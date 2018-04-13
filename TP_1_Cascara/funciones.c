@@ -119,7 +119,7 @@ void sms_error(char mensaje)
     switch(mensaje)
     {
         case '1':
-            printf("\n\n Prueba mensaje de Error: ");
+            printf("\n\n Error debe ingresar los dos operadores para realizar esta operacion.: ");
             break;
         case '5':
             printf("\n\n No se puede realizar una divicion por 0");
@@ -132,6 +132,9 @@ void sms_error(char mensaje)
         case 'D':
             printf("\n\n No es posible realizar factorial de un Nro con valores decimales.");
             printf("\n Si decea realizar esta operacion, Reingrese el operador 1.");
+            break;
+        case 'A':
+            printf("\n Error: Si decea realizar esta operacion, ingrese el operador 1.");
             break;
     }
 }

@@ -27,56 +27,101 @@ int main()
                 FlagAB[1]=1;
                 break;
             case 3://(A+B)
-                printf("\n\n A + B = %f  ",suma(A,B));
-                pause();
-                break;
-            case 4:// (A-B)
-                printf("\n\n A - B = %f  ",resta(A,B));
-                pause();
-                break;
-            case 5:
-                if(validaDivicion(B)==0)
+                if ((FlagAB[0]==1)&&(FlagAB[1]==1))
                 {
-                    printf("\n\n A / B = %f  ",divicion(A,B));
+                    printf("\n\n A + B = %f  ",suma(A,B));
                 }
                 else
                 {
-                    sms_error('5');
+                    sms_error('1');
+                }
+                pause();
+                break;
+            case 4:// (A-B)
+                if ((FlagAB[0]==1)&&(FlagAB[1]==1))
+                {
+                        printf("\n\n A - B = %f  ",resta(A,B));
+                }
+                else
+                {
+                    sms_error('1');
+                }
+                pause();
+                break;
+            case 5:
+                if((FlagAB[0]==1)&&(FlagAB[1]==1))
+                {
+                    if(validaDivicion(B)==0)
+                    {
+                        printf("\n\n A / B = %f  ",divicion(A,B));
+                    }
+                    else
+                    {
+                        sms_error('5');
+                    }// FIN if(validaDivicion(B)==0)
+                }
+                else
+                {
+                    sms_error('1');
                 }
                 pause();
                 break;
             case 6://(A*B)
-                printf("\n\n A * B = %f  ",multiplicacion(A,B));
-                pause();
-                break;
-            case 7: //(A!)
-                Flag_error_factorial=0;
-                Flag_error_factorial= valida_factorial(A);
-                if(Flag_error_factorial != -1 )
+                if ((FlagAB[0]==1)&&(FlagAB[1]==1))
                 {
-                        printf("\n\n El factorial de (A!) es: %d",factorialRecursivo(Flag_error_factorial));
-                        pause();
-                }
-
-                break;
-            case 8:
-                printf("\n\n A + B = %f  ",suma(A,B));
-                printf("\n A - B = %f  ",resta(A,B));
-                if(validaDivicion(B)==0)
-                {
-                    printf("\n A / B = %f  ",divicion(A,B));
+                        printf("\n\n A * B = %f  ",multiplicacion(A,B));
                 }
                 else
                 {
-                    sms_error('5');
+                    sms_error('1');
                 }
-                printf("\n A * B = %f  ",multiplicacion(A,B));
-                Flag_error_factorial=0;
-                Flag_error_factorial= valida_factorial(A);
-                if(Flag_error_factorial != -1 )
+                pause();
+                break;
+            case 7: //(A!)
+                if(FlagAB[0]==1)
                 {
-                        printf("\n El factorial de (A!) es: %d",factorialRecursivo((int) A));
+                    Flag_error_factorial=0;
+                    Flag_error_factorial= valida_factorial(A);
+                    if(Flag_error_factorial != -1 )
+                    {
+                        printf("\n\n El factorial de (A!) es: %d",factorialRecursivo(Flag_error_factorial));
+                    }
                 }
+                else
+                {
+                    sms_error('A');
+                }
+                pause();
+                break;
+            case 8:
+                if ((FlagAB[0]==1)&&(FlagAB[1]==1))
+                {
+                    printf("\n\n A + B = %f  ",suma(A,B));
+                    printf("\n A - B = %f  ",resta(A,B));
+                    if(validaDivicion(B)==0)
+                    {
+                        printf("\n A / B = %f  ",divicion(A,B));
+                    }
+                    else
+                    {
+                        sms_error('5');
+                    }
+                    printf("\n A * B = %f  ",multiplicacion(A,B));
+
+                    //Si bien para el factorial solo me interesa FlagAB[0]==1
+                    //como eligio la opcion de todas las operaciones... decido no mostrarle ningun resultado
+                    //si no carga los 2 operadores...
+                    Flag_error_factorial=0;
+                    Flag_error_factorial= valida_factorial(A);
+                    if(Flag_error_factorial != -1 )
+                    {
+                        printf("\n El factorial de (A!) es: %d",factorialRecursivo((int) A));
+                    }
+                }
+                else
+                {
+                    sms_error('1');
+                }// FIN if ((FlagAB[0]==1)&&(FlagAB[1]==1))
                 pause();
                 break;
             case 9:
