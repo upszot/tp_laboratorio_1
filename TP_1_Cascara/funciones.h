@@ -37,7 +37,7 @@ float multiplicacion(float Nro1,float Nro2);
  * \return float
  *
  */
-float divicion(float Nro1,float Nro2);
+float division(float Nro1,float Nro2);
 
 /** \brief Calcula el factorial de un numero enterio positivo
  *
@@ -82,7 +82,7 @@ void PideValor(float *Numero);
  * \return int
  *
  */
-int validaDivicion(float Nro);
+int validadivision(float Nro);
 
 /** \brief Imprime un cartel en pantalla con pausa y presione tecla para continuar..
  *

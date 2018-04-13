@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1523579995 source:e:\all\github\programacion1y-laboratorio1-master\tp_1_cascara\main.c
+1523581640 source:e:\all\github\programacion1y-laboratorio1-master\tp_1_cascara\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funciones.h"
 
-1523497405 e:\all\github\programacion1y-laboratorio1-master\tp_1_cascara\funciones.h
+1523581640 e:\all\github\programacion1y-laboratorio1-master\tp_1_cascara\funciones.h
 
-1523579480 source:e:\all\github\programacion1y-laboratorio1-master\tp_1_cascara\funciones.c
+1523581903 source:e:\all\github\programacion1y-laboratorio1-master\tp_1_cascara\funciones.c
 

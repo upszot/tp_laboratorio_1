@@ -51,14 +51,14 @@ int main()
             case 5:
                 if((FlagAB[0]==1)&&(FlagAB[1]==1))
                 {
-                    if(validaDivicion(B)==0)
+                    if(validadivision(B)==0)
                     {
-                        printf("\n\n A / B = %f  ",divicion(A,B));
+                        printf("\n\n A / B = %f  ",division(A,B));
                     }
                     else
                     {
                         sms_error('5');
-                    }// FIN if(validaDivicion(B)==0)
+                    }// FIN if(validadivision(B)==0)
                 }
                 else
                 {
@@ -98,9 +98,9 @@ int main()
                 {
                     printf("\n\n A + B = %f  ",suma(A,B));
                     printf("\n A - B = %f  ",resta(A,B));
-                    if(validaDivicion(B)==0)
+                    if(validadivision(B)==0)
                     {
-                        printf("\n A / B = %f  ",divicion(A,B));
+                        printf("\n A / B = %f  ",division(A,B));
                     }
                     else
                     {

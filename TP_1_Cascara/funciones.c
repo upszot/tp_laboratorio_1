@@ -14,7 +14,7 @@ float multiplicacion(float Nro1,float Nro2)
     return (Nro1*Nro2);
 }
 
-float divicion(float Nro1,float Nro2)
+float division(float Nro1,float Nro2)
 {
     return (Nro1/ Nro2);
 }
@@ -42,13 +42,13 @@ int valida_factorial(float Nro)
     if(Nro<0)
     {
         sms_error('N');
-        pause();
+        //pause();
         Retorno=-1;
     }
     if(ParteDecimal>0)
     {
-        sms_error('N');
-        pause();
+        sms_error('D');
+        //pause();
         Retorno=-1;
     }
     if((Nro>=0)&&(ParteDecimal==0))
@@ -101,7 +101,7 @@ void PideValor(float *Numero)
     scanf("%f",Numero);
 }
 
-int validaDivicion(float Nro)
+int validadivision(float Nro)
 {
     if(Nro==0)
     {
@@ -122,12 +122,12 @@ void sms_error(char mensaje)
             printf("\n\n Error debe ingresar los dos operadores para realizar esta operacion.: ");
             break;
         case '5':
-            printf("\n\n No se puede realizar una divicion por 0");
+            printf("\n\n No se puede realizar una division por 0");
             printf("\n Por favor reingrese Operador 2 para ejecutar esta opcion.\n");
             break;
         case 'N':
             printf("\n\n No es posible realizar factorial de un Nro negativo.");
-            printf("\n Si decea realizar esta operacion, Reingrese el operador 1.");
+            printf("\n Si desea realizar esta operacion, Reingrese el operador 1.");
             break;
         case 'D':
             printf("\n\n No es posible realizar factorial de un Nro con valores decimales.");
