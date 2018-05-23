@@ -129,13 +129,14 @@ int agregarPelicula(EMovie record,char *Archivo)
 int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo)
 {
     int retorno=-1;
+    int Pos=0;
+    int Flag_cant=0;
     FILE *pFile;
+    EMovie aux;
 
     if(Archivo!=NULL && lista!=NULL && cant>0)
     {
         retorno=-2;
-        int Pos=0;
-        int Flag_cant=0;
         if(inicializaVector(lista,cant)==0)
         {//aca tengo la lista limpia para cargarla con los datos del archivo
             retorno=-3;
@@ -143,6 +144,7 @@ int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo)
             if(pFile!=NULL)
             {
                 retorno=-4;
+                fread(&aux,sizeof(EMovie),1,pFile);
                 while( !feof(pFile) && Flag_cant==0 )
                 {
                     if(feof(pFile))
@@ -152,15 +154,18 @@ int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo)
                     if(Pos<cant)
                     {
                         retorno=0;
-                        fread(&lista[Pos],sizeof(EMovie),1,pFile);
-                        Pos++;
+                        if(aux.estado==1)
+                        {
+                            lista[Pos]=aux;
+                            Pos++;
+                        }
                     }
                     else
                     {
                         Flag_cant=1;
                         retorno=-5;
                     }
-
+                    fread(&aux,sizeof(EMovie),1,pFile);
                 }//FIN while(!feof(pFile))
                 fclose(pFile);
             }//if(pFile!=NULL)
@@ -175,6 +180,7 @@ void eGen_mostrarUno(EMovie record)
      printf("\n\t Genero: %s Duracion: %d Puntaje: %d",record.genero,record.duracion,record.puntaje);
      printf("\n\t Descripcion: %s  ", record.descripcion);
      printf("\n\t Link Imagen: %s  \n", record.linkImagen);
+     printf("\n\t Estado: %d  \n", record.estado);
 }
 
 int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado)
@@ -198,10 +204,108 @@ int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado)
                 cont++;
             }
         }
-        if(cont!=0 && cont %paginado!=0)
+        if(cont!=0)
         {
             system("pause");
         }
     }
+    return retorno;
+}
+
+int eGen_buscarPorId(EMovie lista[] ,int cant, int ID_Buscado)
+{
+    int retorno = -1;
+    if(cant > 0 && lista != NULL)
+    {
+        retorno = -2;
+        for(int i=0;i<cant;i++)
+        {
+            if(lista[i].estado == 1 && lista[i].id == ID_Buscado)
+            {
+                retorno = i;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+
+int borrarPelicula(EMovie movie,char *Archivo)
+{
+    EMovie aux;
+    FILE *pFile;
+
+    int retorno=-1;
+    int pos;
+    int Flag_Encontro=0;
+
+    if(Archivo!=NULL)
+    {
+        retorno=-2;
+        pFile=fopen(Archivo,"r+b");
+        if(pFile!=NULL)
+        {
+            retorno=-3;
+            while( !feof(pFile) && retorno!=0 )
+            {
+                if(feof(pFile))
+                {//soluciona bug de EOF falso
+                    break;
+                }
+                retorno=-4;
+                fread(&aux,sizeof(EMovie),1,pFile);
+                pos=ftell(pFile)-sizeof(EMovie);
+                if( (aux.id==movie.id) && (Flag_Encontro==0) )
+                {//este tengo que borrar
+                    fseek(pFile,pos,SEEK_SET);
+                    aux.estado=0; //borrado logico
+                    fwrite(&aux, sizeof(EMovie), 1, pFile);
+                    Flag_Encontro=1;
+                    retorno=0;
+                }
+
+            }//FIN while(!feof(pFile))
+            fclose(pFile);
+        }//if(pFile!=NULL)
+    }//FIN if(Archivo!=NULL)
+    return retorno;
+}
+
+int ModificaPelicula(EMovie movie,char *Archivo)
+{
+    EMovie aux;
+    FILE *pFile;
+    int retorno=-1;
+    int pos;
+
+    if(Archivo!=NULL)
+    {
+        retorno=-2;
+        pFile=fopen(Archivo,"r+b");
+        if(pFile!=NULL)
+        {
+            retorno=-3;
+            while( !feof(pFile) && retorno!=0 )
+            {
+                if(feof(pFile))
+                {//soluciona bug de EOF falso
+                    break;
+                }
+                retorno=-4;
+                fread(&aux,sizeof(EMovie),1,pFile);
+                pos=ftell(pFile)-sizeof(EMovie);
+                if(aux.id==movie.id)
+                {
+                    retorno=0;
+                    fseek(pFile,pos,SEEK_SET);
+                    printf("\n Reingrese todos los datos de la pelicula: \n");
+                    movie=carga_datos_pelicula(movie.id);
+                    fwrite(&movie, sizeof(EMovie), 1, pFile);
+                }
+
+            }//FIN while( !feof(pFile) && retorno!=0 )
+            fclose(pFile);
+        }//if(pFile!=NULL)
+    }//FIN if(Archivo!=NULL)
     return retorno;
 }

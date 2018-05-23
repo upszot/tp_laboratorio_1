@@ -30,7 +30,7 @@ int agregarPelicula(EMovie record,char *Archivo); //OK
  *  @param movie la estructura a ser eliminada al archivo
  *  @return retorna 1 o 0 de acuerdo a si pudo eliminar la pelicula o no
  */
-int borrarPelicula(EMovie movie);
+int borrarPelicula(EMovie movie,char *Archivo);
 
 /**
  *  Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
@@ -70,3 +70,6 @@ int Alta_Pelicula(EMovie lista[],int cant);         //OK
 int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo);
 void eGen_mostrarUno(EMovie record);
 int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado);
+
+int eGen_buscarPorId(EMovie lista[] ,int cant, int ID_Buscado);
+int ModificaPelicula(EMovie movie,char *Archivo);
