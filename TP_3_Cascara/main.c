@@ -31,7 +31,8 @@ int main()
                     break;
                 case 2:
                     break;
-                case 3:
+                case 3://Modifica pelicula
+                    Error=eGen_mostrarPelicula(peliculas,TAMPelis,get_int_Rango("Ingrese cantidad de peliculas a mostrar en una pantalla; (Maximo 20) ",1,20));
                     break;
                 case 0:
                     seguir = 'n';

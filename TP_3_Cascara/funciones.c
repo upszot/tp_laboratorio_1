@@ -33,27 +33,27 @@ int obtenerEspacioLibre(EMovie lista[],int cant)
     return retorno;
 }
 
-int eGen_siguienteId(EMovie listado[],int limite)
+int eGen_siguienteId(EMovie lista[],int cant)
 {
     int retorno = 0;
     int Error=-1;
-    if(limite > 0 && listado != NULL)
+    if(cant > 0 && lista != NULL)
     {
         Error=0;
-        for(int i=0; i<limite; i++)
+        for(int i=0; i<cant; i++)
         {
-            if(listado[i].estado == 1)
+            if(lista[i].estado == 1)
             {
-                    if(listado[i].id>retorno)
+                    if(lista[i].id>retorno)
                     {
-                         retorno=listado[i].id;
+                         retorno=lista[i].id;
                     }
             }
         }//FIN for(int i=0; i<limite; i++)
     }
     if(Error==0)
     {
-        retorno+1;
+        retorno++;
     }
     else
     {
@@ -84,7 +84,7 @@ int Alta_Pelicula(EMovie lista[],int cant)
     int retorno=-1;
     int Pos_libre;
     int NextID;
-    if(cant>0&&lista!=NULL)
+    if(cant>0 && lista!=NULL)
     {
         retorno=-2;
         Pos_libre= obtenerEspacioLibre(lista,cant);
@@ -92,6 +92,7 @@ int Alta_Pelicula(EMovie lista[],int cant)
         {//Encontre una posicion libre
             retorno=-3;
             NextID=eGen_siguienteId(lista,cant);
+            NextID=1;
             if(NextID >0 )
             {
                 retorno=0;
@@ -107,4 +108,40 @@ int Alta_Pelicula(EMovie lista[],int cant)
     return retorno;
 }
 
+void eGen_mostrarUno(EMovie record)
+{
+     printf("\n ID: %d  Titulo: %s ", record.id,record.titulo);
+     printf("\n\t Genero: %s Duracion: %d Puntaje: %d",record.genero,record.duracion,record.puntaje);
+     printf("\n\t Descripcion: %s  ", record.descripcion);
+     printf("\n\t Link Imagen: %s  \n", record.linkImagen);
+}
+
+int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado)
+{
+    int retorno = -1;
+    int cont=0;
+    system("cls");
+    if(cant > 0 && lista != NULL)
+    {
+        retorno = 0;
+        for(int i=0; i<cant; i++)
+        {
+            if(lista[i].estado==1)
+            {
+                if(cont!=0 && cont %paginado==0)
+                {
+                    system("pause");
+                    system("cls");
+                }
+                eGen_mostrarUno(lista[i]);
+                cont++;
+            }
+        }
+        if(cont!=0 && cont %paginado!=0)
+        {
+            system("pause");
+        }
+    }
+    return retorno;
+}
 

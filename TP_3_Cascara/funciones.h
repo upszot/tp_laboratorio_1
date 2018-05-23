@@ -67,3 +67,6 @@ int obtenerEspacioLibre(EMovie lista[],int cant);
 int eGen_siguienteId(EMovie listado[],int limite);
 EMovie carga_datos_pelicula(int ID);
 int Alta_Pelicula(EMovie lista[],int cant);
+
+void eGen_mostrarUno(EMovie record);
+int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado);
