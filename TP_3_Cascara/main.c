@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "funciones.h"
 #include "genericas.h"
 
@@ -12,6 +13,9 @@ int main()
     int Error=-9;
     EMovie peliculas[TAMPelis];
     Error=inicializaVector(peliculas,TAMPelis);
+
+    char Archivo[20]="Peliculas.txt";
+    //strcpy(Archivo,"Peliculas.txt");
 
     if(Error==0)
     {
@@ -28,11 +32,21 @@ int main()
             {
                 case 1://AGREGAR PELICULA
                     Error=Alta_Pelicula(peliculas,TAMPelis);
+                    if(Error>=0)
+                    {//Añado la pelicula al archivo
+                        Error=agregarPelicula(peliculas[Error],Archivo);
+                    }
                     break;
-                case 2:
+                case 2://BORRAR PELICULA
+                    Error=ReadFile_CargaPeliculas(peliculas,TAMPelis,Archivo);
+                    if(Error==0)
+                    {//mostrar para despues borrar
+
+                    }
                     break;
-                case 3://Modifica pelicula
-                    Error=eGen_mostrarPelicula(peliculas,TAMPelis,get_int_Rango("Ingrese cantidad de peliculas a mostrar en una pantalla; (Maximo 20) ",1,20));
+                case 3://MODIFICAR PELICULA
+                    break;
+                case 4://GENERAR PAGINA WEB
                     break;
                 case 0:
                     seguir = 'n';

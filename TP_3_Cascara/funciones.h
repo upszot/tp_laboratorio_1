@@ -23,7 +23,7 @@ typedef struct{
  *  @param movie la estructura a ser agregada al archivo
  *  @return retorna 1 o 0 de acuerdo a si pudo agregar la pelicula o no
  */
-int agregarPelicula(EMovie movie);
+int agregarPelicula(EMovie record,char *Archivo); //OK
 
 /**
  *  Borra una pelicula del archivo binario
@@ -50,8 +50,7 @@ void generarPagina(EMovie lista[], char nombre[]);
  * \return int
  *
  */
-int  inicializaVector(EMovie lista[],int tam);
-
+int  inicializaVector(EMovie lista[],int tam);  //OK
 
 /** \brief Obtiene el primer indice libre del array.
  * Devuelve un negativo cuando no hay lugar o se produce un error
@@ -61,12 +60,13 @@ int  inicializaVector(EMovie lista[],int tam);
  * \return int
  *
  */
-int obtenerEspacioLibre(EMovie lista[],int cant);
+int obtenerEspacioLibre(EMovie lista[],int cant);   //OK
 
 
-int eGen_siguienteId(EMovie listado[],int limite);
-EMovie carga_datos_pelicula(int ID);
-int Alta_Pelicula(EMovie lista[],int cant);
+int eGen_siguienteId(EMovie listado[],int limite);  //OK
+EMovie carga_datos_pelicula(int ID);                //OK
+int Alta_Pelicula(EMovie lista[],int cant);         //OK
 
+int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo);
 void eGen_mostrarUno(EMovie record);
 int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado);

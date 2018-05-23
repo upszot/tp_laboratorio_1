@@ -84,7 +84,7 @@ int Alta_Pelicula(EMovie lista[],int cant)
     int retorno=-1;
     int Pos_libre;
     int NextID;
-    if(cant>0 && lista!=NULL)
+    if(cant>0&&lista!=NULL)
     {
         retorno=-2;
         Pos_libre= obtenerEspacioLibre(lista,cant);
@@ -92,10 +92,9 @@ int Alta_Pelicula(EMovie lista[],int cant)
         {//Encontre una posicion libre
             retorno=-3;
             NextID=eGen_siguienteId(lista,cant);
-            NextID=1;
             if(NextID >0 )
             {
-                retorno=0;
+                retorno=Pos_libre;
                 lista[Pos_libre]=carga_datos_pelicula(NextID);
             }
 
@@ -105,6 +104,68 @@ int Alta_Pelicula(EMovie lista[],int cant)
             printf("\n No hay espacio libre..");
         }
     }//if(cant>0&&lista!=NULL)
+    return retorno;
+}
+
+int agregarPelicula(EMovie record,char *Archivo)
+{
+    int retorno=-1;
+    FILE *pFile;
+
+    if(Archivo!=NULL)
+    {
+        retorno=-2;
+        pFile=fopen(Archivo,"ab");
+        if(pFile!=NULL)
+        {
+            retorno=0;
+            fwrite(&record,sizeof(EMovie),1,pFile);
+            fclose(pFile);
+        }//if(pFile!=NULL)
+    }//FIN if(Archivo!=NULL)
+    return retorno;
+}
+
+int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo)
+{
+    int retorno=-1;
+    FILE *pFile;
+
+    if(Archivo!=NULL && lista!=NULL && cant>0)
+    {
+        retorno=-2;
+        int Pos=0;
+        int Flag_cant=0;
+        if(inicializaVector(lista,cant)==0)
+        {//aca tengo la lista limpia para cargarla con los datos del archivo
+            retorno=-3;
+            pFile=fopen(Archivo,"rb");
+            if(pFile!=NULL)
+            {
+                retorno=-4;
+                while( !feof(pFile) && Flag_cant==0 )
+                {
+                    if(feof(pFile))
+                    {//soluciona bug de EOF falso
+                        break;
+                    }
+                    if(Pos<cant)
+                    {
+                        retorno=0;
+                        fread(&lista[Pos],sizeof(EMovie),1,pFile);
+                        Pos++;
+                    }
+                    else
+                    {
+                        Flag_cant=1;
+                        retorno=-5;
+                    }
+
+                }//FIN while(!feof(pFile))
+                fclose(pFile);
+            }//if(pFile!=NULL)
+        }//FIN if(inicializaVector(lista,cant)==0)
+    }//FIN if(Archivo!=NULL && lista!=NULL && cant>0)
     return retorno;
 }
 
@@ -144,4 +205,3 @@ int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado)
     }
     return retorno;
 }
-
