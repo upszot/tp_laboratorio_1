@@ -22,10 +22,10 @@
 	<stdlib.h>
 	<string.h>
 
-1527136199 source:e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\genericas.c
+1527146094 source:e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\genericas.c
 	"genericas.h"
 
-1527133909 e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\genericas.h
+1527146353 e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\genericas.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -37,12 +37,12 @@
 	"funciones.h"
 	"genericas.h"
 
-1527122760 e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\funciones.h
+1527148992 e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\funciones.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1527139943 source:e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\funciones.c
+1527151077 source:e:\documentos\tecnicatura\programacion\trabajos_practicos_utnfra\tp_laboratorio_1\tp_3_cascara\funciones.c
 	"funciones.h"
 	"genericas.h"
 

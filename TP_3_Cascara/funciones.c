@@ -405,6 +405,81 @@ int generarPagina(EMovie lista[], int cant,char *Archivo,char *temp)
     return retorno;
 }
 
+char *reemplaza_substring(char *linea,EMovie record)
+{
+     //    char linea[] = "123%LINK%456";
+    //    char separador[] = "%LINK%";
+    int tam_linea=strlen(linea)+100;
+    char *NuevaLinea=(char *) malloc (sizeof(char)* tam_linea );
+    char separadores[6][20]={"%LINK%","%TITULO%","%GENERO%","%PUNTAJE%","%DURACION%","%DESCRIPCION%"};
+
+    int TipoDato=-1;
+    for(int i=0;i<6;i++)
+    {
+        //printf("Analiza Separador: %s",separadores[i]);
+        if(strstr(linea,separadores[i]) !=NULL )
+        {//ENCONTRO
+          //  printf("El separador es: %s",separadores[i]);
+            TipoDato=i;
+            break;
+        }
+    }
+    if(TipoDato!=-1)
+    {
+        int cont=0;//cuento trozos
+        char *trozo = NULL;
+        //char aux[66];//para pasar de int a char*
+        char *aux=(char *) malloc (sizeof(int)* 8 + 1 );
+
+        trozo = strtok( linea, separadores[TipoDato]);
+        while( trozo != NULL )
+        {
+            if(cont==0)
+            {
+                strcpy(NuevaLinea,trozo);//Antes del dato
+
+                switch(TipoDato)
+                {
+                    case 0: //link
+                        strcat(NuevaLinea,record.linkImagen);
+                        break;
+                    case 1://"%TITULO%"
+                        strcat(NuevaLinea,record.titulo);
+                        break;
+                    case 2://,"%GENERO%"
+                        strcat(NuevaLinea,record.genero);
+                        break;
+                    case 3://,"%PUNTAJE%"
+                        itoa(record.puntaje,aux,10);
+                        strcat(NuevaLinea,aux);
+                        break;
+                    case 4://"%DURACION%"
+                        itoa(record.duracion,aux,10);
+                        strcat(NuevaLinea,aux);
+                        break;
+                    case 5://,"%DESCRIPCION%"
+                        strcat(NuevaLinea,record.descripcion);
+                        break;
+                }//FIN switch(TipoDato)
+            }
+            if(cont==1)
+            {
+                strcat(NuevaLinea,trozo);
+            }
+            trozo = strtok( NULL, separadores[TipoDato]);
+            cont++;
+        }
+        //printf("NuevaLinea: %s",NuevaLinea);
+    }
+    else
+    {
+     //   printf("Linea: %s",linea);
+        strcpy(NuevaLinea,linea);
+    }
+    return NuevaLinea;
+}
+
+
 int WebAddPelicula(EMovie record,char *Archivo,char *temp)
 {
     int retorno = -1;
@@ -426,22 +501,20 @@ int WebAddPelicula(EMovie record,char *Archivo,char *temp)
         if(pFile!=NULL && pMedio!=NULL)
         {
             retorno=-3;
-            medio(record,buffer);
-            fputs(buffer,pFile);
-            retorno =0;
-            /*
+            //medio(record,buffer);
+            //fputs(buffer,pFile);
+            //retorno =0;
+
             while(fgets(linea, 100, pMedio) != NULL)
             {
                 //printf("Linea: %s",linea);
-
-                //reemplazar
+                strcpy(buffer,reemplaza_substring(linea,record) );
                 fputs(buffer,pFile);
+                //fputs( reemplaza_substring(linea,record),pFile );
                 //fwrite(PBuffer, sizeof(char), 1, pFile);
                 retorno=0;
             }
-            system("pause");
-            */
-
+            //system("pause");
 
             fclose(pMedio);
             fclose(pFile);

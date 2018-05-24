@@ -22,3 +22,109 @@
     <div class='container'>
         <div class='row'>
 
+
+			<!-- Repetir esto para cada pelicula -->
+            <article class='col-md-4 article-intro'>
+                <a href='#'>
+                    <img class='img-responsive img-rounded' src='www.volveralfuturo.com' alt=''>
+                </a>
+                <h3>
+                    <a href='#'>volver al futuro</a>
+                </h3>
+				<ul>
+					<li>ficcionénero:					<li>8untaje:					<li>120uración:				</ul>
+                <p>viajes en el tiempo</p>
+            </article>
+			<!-- Repetir esto para cada pelicula -->
+ 
+
+			<!-- Repetir esto para cada pelicula -->
+            <article class='col-md-4 article-intro'>
+                <a href='#'>
+                    <img class='img-responsive img-rounded' src='www.moana.com' alt=''>
+                </a>
+                <h3>
+                    <a href='#'>moana</a>
+                </h3>
+				<ul>
+					<li>dibujosénero:					<li>9untaje:					<li>90uración:				</ul>
+                <p>dibujos de una nena</p>
+            </article>
+			<!-- Repetir esto para cada pelicula -->
+ 
+
+			<!-- Repetir esto para cada pelicula -->
+            <article class='col-md-4 article-intro'>
+                <a href='#'>
+                    <img class='img-responsive img-rounded' src='www.playa.com' alt=''>
+                </a>
+                <h3>
+                    <a href='#'>la playa</a>
+                </h3>
+				<ul>
+					<li>aventuraénero:					<li>4untaje:					<li>120uración:				</ul>
+                <p>mucha gente loca en una playa</p>
+            </article>
+			<!-- Repetir esto para cada pelicula -->
+ 
+
+			<!-- Repetir esto para cada pelicula -->
+            <article class='col-md-4 article-intro'>
+                <a href='#'>
+                    <img class='img-responsive img-rounded' src='www.home.com' alt=''>
+                </a>
+                <h3>
+                    <a href='#'>home</a>
+                </h3>
+				<ul>
+					<li>dibujosénero:					<li>8untaje:					<li>120uración:				</ul>
+                <p>las aventuras de una nena con un extraterrestre.</p>
+            </article>
+			<!-- Repetir esto para cada pelicula -->
+ 
+
+			<!-- Repetir esto para cada pelicula -->
+            <article class='col-md-4 article-intro'>
+                <a href='#'>
+                    <img class='img-responsive img-rounded' src='www.episodio5.com' alt=''>
+                </a>
+                <h3>
+                    <a href='#'>El regreso del jedi</a>
+                </h3>
+				<ul>
+					<li>ficcionénero:					<li>10untaje:					<li>120uración:				</ul>
+                <p>Episodio 5 de star wars</p>
+            </article>
+			<!-- Repetir esto para cada pelicula -->
+ 
+
+			<!-- Repetir esto para cada pelicula -->
+            <article class='col-md-4 article-intro'>
+                <a href='#'>
+                    <img class='img-responsive img-rounded' src='www.hijodelanovia.com' alt=''>
+                </a>
+                <h3>
+                    <a href='#'>El hijo de la novia</a>
+                </h3>
+				<ul>
+					<li>dramaénero:					<li>10untaje:					<li>120uración:				</ul>
+                <p>Una mujer con alzheimer que se quiere casar...</p>
+            </article>
+			<!-- Repetir esto para cada pelicula -->
+ 
+			
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src='js/jquery-1.11.3.min.js'></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src='js/bootstrap.min.js'></script>
+	<!-- IE10 viewport bug workaround -->
+	<script src='js/ie10-viewport-bug-workaround.js'></script>
+	<!-- Placeholder Images -->
+	<script src='js/holder.min.js'></script>
+</body>
+</html>
+

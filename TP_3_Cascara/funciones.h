@@ -44,8 +44,6 @@ int generarPagina(EMovie lista[], int cant,char *Archivo,char *temp);
 
 #endif // FUNCIONES_H_INCLUDED
 
-int generarPagina_head(char *Archivo,char *temp);
-
 /** \brief Inicializa el valor de estado en 0 para indicar que esta libre.
  *         Tambien el id por si se quiere a hacer baja logica
  *
@@ -138,3 +136,9 @@ int eGen_buscarPorId(EMovie lista[] ,int cant, int ID_Buscado); //OK
  *
  */
 int ModificaPelicula(EMovie movie,char *Archivo);       //OK
+
+
+int generarPagina_head(char *Archivo,char *temp);
+int generarPagina_tail(char *Archivo,char *temp);
+char *reemplaza_substring(char *linea,EMovie record);
+int WebAddPelicula(EMovie record,char *Archivo,char *temp);

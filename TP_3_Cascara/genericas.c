@@ -102,21 +102,3 @@ int get_int_Rango(char *sms,int desde,int hasta)
     return aux;
 }
 
-int reemplaza_substring(char *original,char *subcadena)
-{
-    int posicion;
-    int retorno=-1;
-    int tam=strlen(original);
-    char *aux=(char *) malloc (sizeof(char)* tam +10);
-    char *aux2=(char *) malloc (sizeof(char)* tam +10);
-
-    aux= strstr(original,subcadena);
-
-    printf("Valor de aux: %s",aux);
-    strncpy(aux2,original,aux);
-
-    printf("\nValor de aux2: %s",aux2);
-
-    system("pause");
-    return retorno;
-}
