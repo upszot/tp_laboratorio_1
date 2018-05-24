@@ -32,15 +32,19 @@ int agregarPelicula(EMovie record,char *Archivo); //OK
  */
 int borrarPelicula(EMovie movie,char *Archivo); //OK
 
-/**
- *  Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
- *  @param lista la lista de peliculas a ser agregadas en el archivo.
- *  @param nombre el nombre para el archivo.
+/** \brief   Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
+ *
+ * \param lista[] EMovie lista de peliculas a ser agregadas en el archivo.
+ * \param cant int longitud del vector de lista
+ * \param Archivo char*  el nombre para el archivo.
+ * \return (int) retorna 0 NO hubo Error o Valores negativos si Hubo Error,
+ *
  */
-void generarPagina(EMovie lista[], char nombre[]);
+int generarPagina(EMovie lista[], int cant,char *Archivo,char *temp);
 
 #endif // FUNCIONES_H_INCLUDED
 
+int generarPagina_head(char *Archivo,char *temp);
 
 /** \brief Inicializa el valor de estado en 0 para indicar que esta libre.
  *         Tambien el id por si se quiere a hacer baja logica

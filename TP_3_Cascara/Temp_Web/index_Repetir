@@ -1,0 +1,18 @@
+
+			<!-- Repetir esto para cada pelicula -->
+            <article class='col-md-4 article-intro'>
+                <a href='#'>
+                    <img class='img-responsive img-rounded' src='%LINK%' alt=''>
+                </a>
+                <h3>
+                    <a href='#'>%TITULO%</a>
+                </h3>
+				<ul>
+					<li>Género:%GENERO%</li>
+					<li>Puntaje:%PUNTAJE%</li>
+					<li>Duración:%DURACION%</li>					
+				</ul>
+                <p>%DESCRIPCION%</p>
+            </article>
+			<!-- Repetir esto para cada pelicula -->
+ 

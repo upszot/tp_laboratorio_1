@@ -310,3 +310,160 @@ int ModificaPelicula(EMovie movie,char *Archivo)
     }//FIN if(Archivo!=NULL)
     return retorno;
 }
+
+int generarPagina_head(char *Archivo,char *temp)
+{
+    int retorno=-1;
+    FILE *pFile;
+    FILE *pHead;
+    char FHead[50];
+    strcpy(FHead,temp);
+    strcat(FHead,"index_head");
+
+    pFile=fopen(Archivo,"w");
+    pHead=fopen(FHead,"r");
+
+    fseek(pHead, 0L, SEEK_END);
+    int tam=ftell(pHead);
+    fseek(pHead, 0L, SEEK_SET);
+
+    if(pFile!=NULL && pHead!=NULL)
+    {
+        retorno=-2;
+        char *PBuffer= (char *) malloc (tam + 2);
+        while(!feof(pHead))
+        {
+            if(feof(pHead))
+            {//soluciona bug de EOF falso
+                break;
+            }
+            fread(PBuffer,sizeof(char),1,pHead);
+            fwrite(PBuffer, sizeof(char), 1, pFile);
+            retorno=0;
+        }
+    }
+    fclose(pHead);
+    fclose(pFile);
+    return retorno;
+}
+
+int generarPagina_tail(char *Archivo,char *temp)
+{
+    int retorno=-1;
+    FILE *pFile;
+    FILE *pTail;
+    char FTail[50];
+    strcpy(FTail,temp);
+    strcat(FTail,"index_tail");
+
+    pFile=fopen(Archivo,"a");
+    pTail=fopen(FTail,"r");
+
+    fseek(pTail, 0L, SEEK_END);
+    int tam=ftell(pTail);
+    fseek(pTail, 0L, SEEK_SET);
+
+    if(pFile!=NULL && pTail!=NULL)
+    {
+        retorno=-2;
+        char *PBuffer= (char *) malloc (tam + 2);
+        while(!feof(pTail))
+        {
+            if(feof(pTail))
+            {//soluciona bug de EOF falso
+                break;
+            }
+            fread(PBuffer,sizeof(char),1,pTail);
+            fwrite(PBuffer, sizeof(char), 1, pFile);
+            retorno=0;
+        }
+    }
+     fclose(pTail);
+     fclose(pFile);
+    return retorno;
+}
+
+int generarPagina(EMovie lista[], int cant,char *Archivo,char *temp)
+{
+    int retorno = -1;
+    if(cant > 0 && lista != NULL && Archivo!=NULL)
+    {
+        retorno = -2;
+            for(int i=0; i<cant; i++)
+            {
+                if(lista[i].estado==1)
+                {
+                    retorno = 0;
+                    if(WebAddPelicula(lista[i],Archivo,temp) !=0 )
+                    {
+                        retorno=-3;
+                        break;
+                    }
+                }
+            }//FIN for(int i=0; i<cant; i++)
+    }// FIN if(cant > 0 && lista != NULL && archivo!=NULL)
+    return retorno;
+}
+
+int WebAddPelicula(EMovie record,char *Archivo,char *temp)
+{
+    int retorno = -1;
+
+    FILE *pFile;
+    FILE *pMedio;
+    char FMedio[50];
+    char linea[100];
+    char buffer[2000];
+    if(Archivo!=NULL && temp!=NULL)
+    {
+        retorno = -2;
+        strcpy(FMedio,temp);
+        strcat(FMedio,"index_Repetir");
+
+        pFile=fopen(Archivo,"a");
+        pMedio=fopen(FMedio,"r");
+
+        if(pFile!=NULL && pMedio!=NULL)
+        {
+            retorno=-3;
+            medio(record,buffer);
+            fputs(buffer,pFile);
+            retorno =0;
+            /*
+            while(fgets(linea, 100, pMedio) != NULL)
+            {
+                //printf("Linea: %s",linea);
+
+                //reemplazar
+                fputs(buffer,pFile);
+                //fwrite(PBuffer, sizeof(char), 1, pFile);
+                retorno=0;
+            }
+            system("pause");
+            */
+
+
+            fclose(pMedio);
+            fclose(pFile);
+        }//FIN if(pFile!=NULL && pMedio!=NULL)
+    }//FIN if(Archivo!=NULL && temp!=NULL)
+    return retorno;
+}
+
+void medio(EMovie record,char *medio)
+{
+
+    strcpy(medio,"			<!-- Repetir esto para cada pelicula -->            <article class='col-md-4 article-intro'>                <a href='#'>                    <img class='img-responsive img-rounded' src='");
+    strcat(medio,record.linkImagen);
+    strcat(medio,"' alt=''>                </a>                <h3>                    <a href='#'>");
+    strcat(medio,record.titulo);
+    strcat(medio,"</a>                </h3>				<ul>					<li>Género:");
+    strcat(medio,record.genero);
+    strcat(medio,"</li>					<li>Puntaje:");
+    strcat(medio,record.puntaje);
+    strcat(medio,"</li>					<li>Duración:");
+    strcat(medio,record.duracion);
+    strcat(medio,"%</li>									</ul>                <p>");
+    strcat(medio,record.descripcion);
+    strcat(medio,"</p>            </article>			<!-- Repetir esto para cada pelicula -->    ");
+}

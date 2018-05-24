@@ -15,6 +15,8 @@ int main()
     Error=inicializaVector(peliculas,TAMPelis);
 
     char Archivo[20]="Peliculas.txt";
+    char web[20]="Web\\hola.txt";
+    char Path_Template[20]="Temp_Web\\";
 
     if(Error==0)
     {
@@ -91,7 +93,31 @@ int main()
 
                     break;
                 case 4://GENERAR PAGINA WEB
-
+                    Error=ReadFile_CargaPeliculas(peliculas,TAMPelis,Archivo);
+                    if(Error==0)
+                    {
+                        Error=generarPagina_head(web,Path_Template);
+                        if(Error==0)
+                        {
+                            Error=generarPagina(peliculas,TAMPelis,web,Path_Template);
+                            if(Error==0)
+                            {
+                                Error=generarPagina_tail(web,Path_Template);
+                                if(Error!=0)
+                                {
+                                    Error=Error*1000;
+                                }//FIN ERROR AGREGADO TAIL
+                            }
+                            else
+                            {
+                                Error=Error*100;
+                            }//FIN ERROR PARTE DEL MEDIO
+                        }
+                        else
+                        {
+                            Error=Error*10;
+                        }//FIN ERROR AGREGADO HEAD
+                    }//FIN ERROR recarga vector
                     break;
                 case 5://Muestra peliculas
                     Error=ReadFile_CargaPeliculas(peliculas,TAMPelis,Archivo);

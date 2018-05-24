@@ -42,3 +42,5 @@ char *get_char(char *sms,int LongitudCadena);
  *
  */
 int get_int_Rango(char *sms,int desde,int hasta);
+
+int reemplaza_substring(char *original,char *subcadena);
