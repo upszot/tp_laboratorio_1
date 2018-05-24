@@ -31,6 +31,9 @@ void sms_error(int mensaje,int Error)
         case 4:
             printf("ERROR-COD: %d -- Generar página web",Error);
             break;
+        case 5:
+            printf("ERROR-COD: %d -- Mostrar Peliculas",Error);
+            break;
         case -2:
             printf("ERROR-COD: %d -- Opcion de menu Invalida",Error);
             break;

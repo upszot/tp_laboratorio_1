@@ -1,4 +1,5 @@
 #include "funciones.h"
+#include "genericas.h"
 
 int  inicializaVector(EMovie lista[],int tam)
 {

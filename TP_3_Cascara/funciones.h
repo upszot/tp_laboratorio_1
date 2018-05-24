@@ -21,16 +21,16 @@ typedef struct{
 /**
  *  Agrega una pelicula al archivo binario
  *  @param movie la estructura a ser agregada al archivo
- *  @return retorna 1 o 0 de acuerdo a si pudo agregar la pelicula o no
+ *  @return retorna  0 d si pudo agregar la pelicula o numeros negativos si hubo un error
  */
 int agregarPelicula(EMovie record,char *Archivo); //OK
 
 /**
  *  Borra una pelicula del archivo binario
  *  @param movie la estructura a ser eliminada al archivo
- *  @return retorna 1 o 0 de acuerdo a si pudo eliminar la pelicula o no
+ *  @return retorna 0 si pudo eliminar la pelicula o numeros negativos si hubo un error
  */
-int borrarPelicula(EMovie movie,char *Archivo);
+int borrarPelicula(EMovie movie,char *Archivo); //OK
 
 /**
  *  Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
@@ -47,7 +47,7 @@ void generarPagina(EMovie lista[], char nombre[]);
  *
  * \param lista[] EMovie
  * \param tam int
- * \return int
+ * \return (int) retorna 0 NO hubo Error o Valores negativos si Hubo Error,
  *
  */
 int  inicializaVector(EMovie lista[],int tam);  //OK
@@ -57,19 +57,80 @@ int  inicializaVector(EMovie lista[],int tam);  //OK
  *
  * \param lista[] EMovie
  * \param cant int
- * \return int
+ * \return (int) retorna Posision del proximo espacio libre en el vector o Valores negativos si Hubo Error,
  *
  */
 int obtenerEspacioLibre(EMovie lista[],int cant);   //OK
 
+/** \brief Obtiene el siguiente Nro de ID
+ *
+ * \param lista[] EMovie
+ * \param cant int
+ * \return (int) retorna valor positivo con el siguiente nro de id o Valores negativos si Hubo Error,
+ *
+ */
+int eGen_siguienteId(EMovie lista[],int cant);      //OK
 
-int eGen_siguienteId(EMovie listado[],int limite);  //OK
+/** \brief pide datos de pelicula, y devuelve una estructura del tipo emovie con los datos cargados
+ *
+ * \param ID int
+ * \return EMovie
+ *
+ */
 EMovie carga_datos_pelicula(int ID);                //OK
+
+/** \brief Agrega 1 pelicula al vector de peliculas (llama a carga_datos_pelicula para el ingreso de los datos)
+ *
+ * \param lista[] EMovie
+ * \param cant int
+ * \return (int) retorna 0 NO hubo Error o Valores negativos si Hubo Error,
+ *
+ */
 int Alta_Pelicula(EMovie lista[],int cant);         //OK
 
-int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo);
-void eGen_mostrarUno(EMovie record);
-int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado);
+/** \brief Lee un archivo y recarga el listado de peliculas pisando lo que tenia antes el listado
+ *
+ * \param lista[] EMovie
+ * \param cant int
+ * \param Archivo char*
+ * \return (int) retorna 0 NO hubo Error o Valores negativos si Hubo Error,
+ *
+ */
+int ReadFile_CargaPeliculas(EMovie lista[],int cant,char *Archivo);     //OK
 
-int eGen_buscarPorId(EMovie lista[] ,int cant, int ID_Buscado);
-int ModificaPelicula(EMovie movie,char *Archivo);
+/** \brief Muestra por pantalla datos de 1 sola pelicula
+ *
+ * \param record EMovie
+ * \return void
+ *
+ */
+void eGen_mostrarUno(EMovie record);    //OK
+
+/** \brief Recorre el vector de peliculas llamando a "eGen_mostrarUno" para visualizar todas las peliculas
+ *
+ * \param lista[] EMovie
+ * \param cant int
+ * \param paginado int
+ * \return (int) retorna 0 NO hubo Error o Valores negativos si Hubo Error,
+ *
+ */
+int eGen_mostrarPelicula(EMovie lista[],int cant,int paginado); //OK
+
+/** \brief Busca en el listado el ID y retorna la posision donde se encontro
+ *
+ * \param lista[] EMovie
+ * \param cant int
+ * \param ID_Buscado int
+ * \return (int) retorna Nro de posicion donde se enncontro el ID o Valores negativos si Hubo Error,
+ *
+ */
+int eGen_buscarPorId(EMovie lista[] ,int cant, int ID_Buscado); //OK
+
+/** \brief Modifica todos los datos (menos el ID) de una pelicula e impacta el cambio en el archivo
+ *
+ * \param movie EMovie
+ * \param Archivo char*
+ * \return (int) retorna 0 NO hubo Error o Valores negativos si Hubo Error,
+ *
+ */
+int ModificaPelicula(EMovie movie,char *Archivo);       //OK
