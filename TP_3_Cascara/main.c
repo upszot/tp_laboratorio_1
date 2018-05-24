@@ -14,8 +14,9 @@ int main()
     EMovie peliculas[TAMPelis];
     Error=inicializaVector(peliculas,TAMPelis);
 
-    char Archivo[20]="Peliculas.txt";
-    char web[20]="Web\\hola.txt";
+    char Archivo[30]="Peliculas.txt";
+    //char web[50]="Web\\index_peliculas.html";
+    char web[50]="Web\\index.html";
     char Path_Template[20]="Temp_Web\\";
 
     if(Error==0)

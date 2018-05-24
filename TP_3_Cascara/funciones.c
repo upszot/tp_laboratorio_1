@@ -409,9 +409,10 @@ char *reemplaza_substring(char *linea,EMovie record)
 {
      //    char linea[] = "123%LINK%456";
     //    char separador[] = "%LINK%";
-    int tam_linea=strlen(linea)+100;
+    int tam_linea=strlen(linea)+200;
     char *NuevaLinea=(char *) malloc (sizeof(char)* tam_linea );
-    char separadores[6][20]={"%LINK%","%TITULO%","%GENERO%","%PUNTAJE%","%DURACION%","%DESCRIPCION%"};
+//    char separadores[6][30]={"%LINK%","%TITULO%","%GENERO%","%PUNTAJE%","%DURACION%","%DESCRIPCION%"};
+    char separadores[6][30]={"%E1%","%E2%","%E3%","%E4%","%E5%","%E6%"};
 
     int TipoDato=-1;
     for(int i=0;i<6;i++)
@@ -428,8 +429,8 @@ char *reemplaza_substring(char *linea,EMovie record)
     {
         int cont=0;//cuento trozos
         char *trozo = NULL;
-        //char aux[66];//para pasar de int a char*
-        char *aux=(char *) malloc (sizeof(int)* 8 + 1 );
+        char aux[100];//para pasar de int a char*
+        //char *aux=(char *) malloc (sizeof(int)* 8 + 1 );
 
         trozo = strtok( linea, separadores[TipoDato]);
         while( trozo != NULL )
@@ -446,10 +447,10 @@ char *reemplaza_substring(char *linea,EMovie record)
                     case 1://"%TITULO%"
                         strcat(NuevaLinea,record.titulo);
                         break;
-                    case 2://,"%GENERO%"
+                    case 2://"%GENERO%"
                         strcat(NuevaLinea,record.genero);
                         break;
-                    case 3://,"%PUNTAJE%"
+                    case 3://"%PUNTAJE%"
                         itoa(record.puntaje,aux,10);
                         strcat(NuevaLinea,aux);
                         break;
@@ -457,7 +458,7 @@ char *reemplaza_substring(char *linea,EMovie record)
                         itoa(record.duracion,aux,10);
                         strcat(NuevaLinea,aux);
                         break;
-                    case 5://,"%DESCRIPCION%"
+                    case 5://"%DESCRIPCION%"
                         strcat(NuevaLinea,record.descripcion);
                         break;
                 }//FIN switch(TipoDato)
@@ -488,7 +489,7 @@ int WebAddPelicula(EMovie record,char *Archivo,char *temp)
     FILE *pMedio;
     char FMedio[50];
     char linea[100];
-    char buffer[2000];
+    char buffer[200];
     if(Archivo!=NULL && temp!=NULL)
     {
         retorno = -2;
@@ -501,17 +502,12 @@ int WebAddPelicula(EMovie record,char *Archivo,char *temp)
         if(pFile!=NULL && pMedio!=NULL)
         {
             retorno=-3;
-            //medio(record,buffer);
-            //fputs(buffer,pFile);
-            //retorno =0;
-
             while(fgets(linea, 100, pMedio) != NULL)
             {
                 //printf("Linea: %s",linea);
                 strcpy(buffer,reemplaza_substring(linea,record) );
                 fputs(buffer,pFile);
                 //fputs( reemplaza_substring(linea,record),pFile );
-                //fwrite(PBuffer, sizeof(char), 1, pFile);
                 retorno=0;
             }
             //system("pause");
@@ -521,22 +517,4 @@ int WebAddPelicula(EMovie record,char *Archivo,char *temp)
         }//FIN if(pFile!=NULL && pMedio!=NULL)
     }//FIN if(Archivo!=NULL && temp!=NULL)
     return retorno;
-}
-
-void medio(EMovie record,char *medio)
-{
-
-    strcpy(medio,"			<!-- Repetir esto para cada pelicula -->            <article class='col-md-4 article-intro'>                <a href='#'>                    <img class='img-responsive img-rounded' src='");
-    strcat(medio,record.linkImagen);
-    strcat(medio,"' alt=''>                </a>                <h3>                    <a href='#'>");
-    strcat(medio,record.titulo);
-    strcat(medio,"</a>                </h3>				<ul>					<li>Género:");
-    strcat(medio,record.genero);
-    strcat(medio,"</li>					<li>Puntaje:");
-    strcat(medio,record.puntaje);
-    strcat(medio,"</li>					<li>Duración:");
-    strcat(medio,record.duracion);
-    strcat(medio,"%</li>									</ul>                <p>");
-    strcat(medio,record.descripcion);
-    strcat(medio,"</p>            </article>			<!-- Repetir esto para cada pelicula -->    ");
 }

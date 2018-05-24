@@ -2,17 +2,17 @@
 			<!-- Repetir esto para cada pelicula -->
             <article class='col-md-4 article-intro'>
                 <a href='#'>
-                    <img class='img-responsive img-rounded' src=' %E1% ' alt=''>
+                    <img class='img-responsive img-rounded' src=' %LINK% ' alt=''>
                 </a>
                 <h3>
-                    <a href='#'> %E2% </a>
+                    <a href='#'> %TITULO% </a>
                 </h3>
 				<ul>
-					<li>Genero: %E3% </li>
-					<li>Puntaje: %E4% </li>
-					<li>Duracion: %E5% </li>					
+					<li>Genero: %GENERO% </li>
+					<li>Puntaje: %PUNTAJE% </li>
+					<li>Duracion: %DURACION% </li>					
 				</ul>
-                <p> %E6% </p>
+                <p> %DESCRIPCION% </p>
             </article>
 			<!-- Repetir esto para cada pelicula -->
  

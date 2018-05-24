@@ -12,9 +12,9 @@ typedef struct{
     char titulo[20];
     char genero[20];
     int duracion;
-    char descripcion[50];
+    char descripcion[250];
     int puntaje;
-    char linkImagen[50];
+    char linkImagen[70];
 }EMovie;
 
 
@@ -138,7 +138,39 @@ int eGen_buscarPorId(EMovie lista[] ,int cant, int ID_Buscado); //OK
 int ModificaPelicula(EMovie movie,char *Archivo);       //OK
 
 
+/** \brief Agrega cabezera al la pagina web
+ *
+ * \param Archivo char*
+ * \param temp char*
+ * \return int
+ *
+ */
 int generarPagina_head(char *Archivo,char *temp);
+
+/** \brief Agrega la ultima parte a la pagina web
+ *
+ * \param Archivo char*
+ * \param temp char*
+ * \return int
+ *
+ */
 int generarPagina_tail(char *Archivo,char *temp);
+
+/** \brief Realiza una subtitucion de separadores por los datos concretos de las peliculas,
+ *
+ * \param linea char*
+ * \param record EMovie
+ * \return char*
+ *
+ */
 char *reemplaza_substring(char *linea,EMovie record);
+
+/** \brief realiza la logica del agregado en la web 1 pelicula... llama a "reemplaza_substring" para modificar el texto del template
+ *
+ * \param record EMovie
+ * \param Archivo char*
+ * \param temp char*
+ * \return int
+ *
+ */
 int WebAddPelicula(EMovie record,char *Archivo,char *temp);
