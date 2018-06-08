@@ -70,31 +70,21 @@ ArrayList* al_newArrayList(void)
 int al_add(ArrayList* this, void* pElement)
 {
     int returnAux = -1;
+    int flag_sinRAM;
     void **pTemp;
     if(this != NULL && pElement!= NULL )
     {
-        returnAux = -2;
         if(this->size == this->reservedSize)
         {
-            pTemp= (void **) realloc(this->pElements,sizeof(void *) * (this->size + AL_INCREMENT) );
-            returnAux = -3;
-            if(pTemp!=NULL)
-            {
-                returnAux = -4;
-                this->pElements=pTemp;
-                this->reservedSize+=AL_INCREMENT;
-            }
+            flag_sinRAM=resizeUp(this);
         }
-        if(returnAux == -4 || returnAux == -2 )
+
+        if(flag_sinRAM == 0 )
         {
             //this->pElements[this->size]=pElement;
             *((this->pElements) + (this->size))=pElement;
             this->size++;
             returnAux = 0;
-        }
-        else
-        {
-            returnAux = -1; //para cumplir con la documentacion... aunque no es optimo
         }
     }
     return returnAux;
@@ -328,6 +318,21 @@ int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order)
 int resizeUp(ArrayList* this)
 {
     int returnAux = -1;
+
+    void **pTemp;
+    if(this != NULL )
+    {
+        if(this->size == this->reservedSize)
+        {
+            pTemp= (void **) realloc(this->pElements,sizeof(void *) * (this->size + AL_INCREMENT) );
+            if(pTemp!=NULL)
+            {
+                returnAux = 0;
+                this->pElements=pTemp;
+                this->reservedSize+=AL_INCREMENT;
+            }
+        }
+    }
 
     return returnAux;
 
