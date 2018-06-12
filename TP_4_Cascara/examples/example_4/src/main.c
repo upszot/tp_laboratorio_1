@@ -28,14 +28,14 @@
 
 int main(void)
 {
-        //startTesting(1);//new     ok
-        //startTesting(2);//add     ok
-        //startTesting(3);//del     ok
-        //startTesting(4);//len     ok
-        //startTesting(5);//get
-        startTesting(6);//constain
-        //startTesting(7);//set
-        //startTesting(8);//remove
+        //startTesting(1);//new       ok
+        //startTesting(2);//add       ok
+        //startTesting(3);//del       ok
+        //startTesting(4);//len       ok
+        //startTesting(5);//get       ok
+        //startTesting(6);//constain  ok
+        //startTesting(7);//set       ok
+        startTesting(8);//remove    ok
         //startTesting(9);//clear
         //startTesting(10);// rompe de 1
         //startTesting(11);//push
