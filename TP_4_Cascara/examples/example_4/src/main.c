@@ -36,7 +36,7 @@ int main(void)
         //startTesting(6);//constain  ok
         //startTesting(7);//set       ok
         startTesting(8);//remove    ok
-        //startTesting(9);//clear
+        startTesting(9);//clear
         //startTesting(10);// rompe de 1
         //startTesting(11);//push
         //startTesting(12);//indexOf

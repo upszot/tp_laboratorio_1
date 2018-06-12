@@ -219,7 +219,22 @@ int al_remove(ArrayList* this,int index)
 int al_clear(ArrayList* this)
 {
     int returnAux = -1;
-
+    int flag=0;
+    if(this!=NULL)
+    {
+        for(int i=0;i<this->size;i++)
+        {
+            if(al_remove(this,i)!=0)
+            {
+                flag=1;
+            }
+        }
+        if(flag==0)
+        {
+            this->size=0;
+            returnAux = 0;
+        }
+    }
     return returnAux;
 }
 
