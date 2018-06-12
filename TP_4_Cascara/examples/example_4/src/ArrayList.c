@@ -70,7 +70,7 @@ ArrayList* al_newArrayList(void)
 int al_add(ArrayList* this, void* pElement)
 {
     int returnAux = -1;
-    int flag_sinRAM;
+    int flag_sinRAM=0;
     void **pTemp;
     if(this != NULL && pElement!= NULL )
     {
@@ -98,7 +98,11 @@ int al_add(ArrayList* this, void* pElement)
 int al_deleteArrayList(ArrayList* this)
 {
     int returnAux = -1;
-
+    if(this!=NULL)
+    {
+        free(this);
+        returnAux = 0;
+    }
     return returnAux;
 }
 
