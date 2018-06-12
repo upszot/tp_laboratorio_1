@@ -30,8 +30,8 @@ int main(void)
 {
         //startTesting(1);//new
         startTesting(2);//add
-        //startTesting(3);//del
-        //startTesting(4);//len
+        startTesting(3);//del
+        startTesting(4);//len
         //startTesting(5);//get
         //startTesting(6);//constain
         //startTesting(7);//set
