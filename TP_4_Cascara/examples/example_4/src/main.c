@@ -40,7 +40,7 @@ int main(void)
         startTesting(10);// clone           ok
         //startTesting(11);//push             ---falta
         startTesting(12);//indexOf
-        //startTesting(13);//isEmpty
+        startTesting(13);//isEmpty
         //startTesting(14);//pop
         //startTesting(15);//subList
         //startTesting(16);//constainAll
