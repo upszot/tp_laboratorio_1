@@ -28,18 +28,18 @@
 
 int main(void)
 {
-        //startTesting(1);//new       ok
-        //startTesting(2);//add       ok
-        //startTesting(3);//del       ok
-        //startTesting(4);//len       ok
-        //startTesting(5);//get       ok
-        //startTesting(6);//constain  ok
-        //startTesting(7);//set       ok
-        startTesting(8);//remove    ok
-        startTesting(9);//clear
-        //startTesting(10);// rompe de 1
-        //startTesting(11);//push
-        //startTesting(12);//indexOf
+        //startTesting(1);//new             ok
+        //startTesting(2);//add             ok
+        //startTesting(3);//del             ok
+        //startTesting(4);//len             ok
+        //startTesting(5);//get             ok
+        //startTesting(6);//constain        ok
+        //startTesting(7);//set             ok
+        //startTesting(8);//remove          ok
+        //startTesting(9);//clear             ok
+        startTesting(10);// clone           ok
+        //startTesting(11);//push             ---falta
+        startTesting(12);//indexOf
         //startTesting(13);//isEmpty
         //startTesting(14);//pop
         //startTesting(15);//subList
