@@ -42,8 +42,8 @@ int main(void)
         //startTesting(12);//indexOf        ok
         //startTesting(13);//isEmpty        ok
         //startTesting(14);//pop            ok
-        startTesting(15);//subList      //preguntar....
-        //startTesting(16);//constainAll
+        //startTesting(15);//subList      //preguntar.. por declaracion void * aux
+        startTesting(16);//constainAll      ok
         //startTesting(17);//sort
 
     return 0;

@@ -398,6 +398,28 @@ ArrayList* al_subList(ArrayList* this,int from,int to)
 int al_containsAll(ArrayList* this,ArrayList* this2)
 {
     int returnAux = -1;
+    int NoEncontro=0;
+
+    if(this!=NULL && this2!=NULL )
+    {
+        returnAux = 0;
+        if(this->len(this) == this2->len(this2) )
+        {
+            for(int i=0;i<al_len(this);i++)
+            {
+                if(al_contains(this2 , this->get(this,i) ) != 1)
+                {
+                    NoEncontro=1;
+                    break;
+                }
+            }
+
+            if(NoEncontro==0)
+            {
+                returnAux = 1;
+            }
+        }//FIN if(this->len(this) == this2->len(this2) )
+    }//FIN if(this!=NULL && this2!=NULL )
 
     return returnAux;
 }
