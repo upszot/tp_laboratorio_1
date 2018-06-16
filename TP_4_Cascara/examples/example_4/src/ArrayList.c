@@ -403,11 +403,11 @@ int al_containsAll(ArrayList* this,ArrayList* this2)
     if(this!=NULL && this2!=NULL )
     {
         returnAux = 0;
-        if(this->len(this) == this2->len(this2) )
-        {
+        if(this2->len(this2) <= this->len(this) )
+        {//this2 tiene que estar contenido en this
             for(int i=0;i<al_len(this);i++)
             {
-                if(al_contains(this2 , this->get(this,i) ) != 1)
+                if(al_contains(this , this2->get(this2,i) ) != 1)
                 {
                     NoEncontro=1;
                     break;
