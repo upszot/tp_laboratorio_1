@@ -74,7 +74,7 @@ int al_add(ArrayList* this, void* pElement)
     void **pTemp;
     if(this != NULL && pElement!= NULL )
     {
-        if(this->size == this->reservedSize)
+        if(al_len(this) == this->reservedSize)
         {
             flag_sinRAM=resizeUp(this);
         }
@@ -286,9 +286,9 @@ ArrayList* al_clone(ArrayList* this)
 int al_push(ArrayList* this, int index, void* pElement)
 {
     int returnAux = -1;
-    if(this!=NULL && (index>=0 && index <= al_len(this)) && pElement!=NULL )
+    if(this!=NULL && pElement!=NULL && (index>=0 && index <= al_len(this) )  )
     {
-        if(expand(this,index) == 0) // falta programar
+        if(expand(this,index) == 0)
         {
             returnAux=al_set(this,index,pElement);
         }
@@ -335,8 +335,7 @@ int al_isEmpty(ArrayList* this)
         {
            returnAux=1;
         }
-
-        if( al_len(this)>0)
+        else
         {
             returnAux=0;
         }
@@ -475,15 +474,33 @@ int resizeDown(ArrayList* this)
 int expand(ArrayList* this,int index)
 {
     int returnAux = -1;
-    if(this!=NULL && (index>=0 && index <= al_len(this)) )
+    int flag_error=0;
+    int len=al_len(this);
+    if(this!=NULL && len !=-1 && (index>=0 && index <= len) )
     {
-        for(int i=al_len(this); i< index;i--)
+        for(int i=al_len(this); i>index; i--)
         {
-            //*************** falta hacer....
-            //this->add();
-            //*(this->pElements+i)= *(this->pElements +i +1);
+            if(i==al_len(this))
+            {//ultimo elemento
+                if(al_add(this,al_get(this,i-1))!=0)
+                {
+                    flag_error=1;
+                    break;
+                }
+            }
+            else
+            {
+                if(al_set(this,i,al_get(this,i-1)) !=0)
+                {
+                    flag_error=1;
+                    break;
+                }
+            }
+        }//FIN for(int i=al_len(this); i<= index;i--)
+        if(flag_error==0)
+        {
+            returnAux = 0;
         }
-        returnAux = 0;
     }
     return returnAux;
 }

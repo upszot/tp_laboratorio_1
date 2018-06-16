@@ -36,12 +36,12 @@ int main(void)
         //startTesting(6);//constain        ok
         //startTesting(7);//set             ok
         //startTesting(8);//remove          ok
-        //startTesting(9);//clear             ok
-        startTesting(10);// clone           ok
-        //startTesting(11);//push             ---falta
-        startTesting(12);//indexOf
-        startTesting(13);//isEmpty
-        //startTesting(14);//pop
+        //startTesting(9);//clear           ok
+        //startTesting(10);// clone         ok
+        //startTesting(11);//push             ok
+        //startTesting(12);//indexOf        ok
+        //startTesting(13);//isEmpty        ok
+        startTesting(14);//pop
         //startTesting(15);//subList
         //startTesting(16);//constainAll
         //startTesting(17);//sort
