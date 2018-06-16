@@ -100,6 +100,10 @@ int al_deleteArrayList(ArrayList* this)
     int returnAux = -1;
     if(this!=NULL)
     {
+        if(this->pElements!=NULL)
+        {
+            free(this->pElements);
+        }
         free(this);
         returnAux = 0;
     }
@@ -247,28 +251,10 @@ int al_clear(ArrayList* this)
  */
 ArrayList* al_clone(ArrayList* this)
 {
-    int Err=0;
     ArrayList* returnAux = NULL;
-    void* pElement;
-
     if(this!=NULL)
     {
-        returnAux=al_newArrayList();
-        for(int i=0; i<this->len(this) ;i++)
-        {
-            pElement=al_get(this,i);
-            if(pElement==NULL && returnAux->add(returnAux ,pElement) !=0 )
-            {
-                Err=1;
-                break;
-            }
-        }
-    }
-
-    if(Err==1)
-    {
-        al_deleteArrayList(returnAux);
-        returnAux = NULL;
+       returnAux=al_subList(this,0,al_len(this));
     }
     return returnAux;
 }
@@ -358,7 +344,10 @@ void* al_pop(ArrayList* this,int index)
     if(this!=NULL && (index>=0 && index < al_len(this)) )
     {
         returnAux=this->get(this,index);
-
+        if(al_remove(this,index) !=0)
+        {
+            returnAux = NULL;
+        }
     }
     return returnAux;
 }
@@ -374,8 +363,25 @@ void* al_pop(ArrayList* this,int index)
  */
 ArrayList* al_subList(ArrayList* this,int from,int to)
 {
-    void* returnAux = NULL;
+    //void* returnAux = NULL;  //Preguntar a ver que onda con esto?
 
+    ArrayList* returnAux = NULL;
+    void* pElement;
+
+    if(this!=NULL && from >=0 && to <= this->len(this) && from <to )
+    {
+        returnAux=al_newArrayList();
+        for(int i=from; i<to ;i++)
+        {
+            pElement=al_get(this,i);
+            if(pElement==NULL || returnAux->add(returnAux ,pElement) !=0 )
+            {
+                al_deleteArrayList(returnAux);
+                returnAux = NULL;
+                break;
+            }
+        }//FIN for(int i=from; i<to ;i++)
+    }
     return returnAux ;
 }
 

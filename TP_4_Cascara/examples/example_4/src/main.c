@@ -38,11 +38,11 @@ int main(void)
         //startTesting(8);//remove          ok
         //startTesting(9);//clear           ok
         //startTesting(10);// clone         ok
-        //startTesting(11);//push             ok
+        //startTesting(11);//push           ok
         //startTesting(12);//indexOf        ok
         //startTesting(13);//isEmpty        ok
-        startTesting(14);//pop
-        //startTesting(15);//subList
+        //startTesting(14);//pop            ok
+        startTesting(15);//subList      //preguntar....
         //startTesting(16);//constainAll
         //startTesting(17);//sort
 
